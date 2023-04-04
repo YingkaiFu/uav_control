@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="track_demo" type="state" name="state" output="screen">
+	</node>
+</launch>

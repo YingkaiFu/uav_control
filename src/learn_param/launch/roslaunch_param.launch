@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="learn_param" type="rosrun_param" name="rosrun_param" output="screen">
+        <param name="username" type="string" value="qushanglai_roslaunch"/>
+    </node>
+</launch>

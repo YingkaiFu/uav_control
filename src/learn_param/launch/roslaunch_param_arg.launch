@@ -1,0 +1,6 @@
+<launch>
+    <arg name="UN" default="qushanglai_roslaunch_arg" />
+    <node pkg="learn_param" type="rosrun_param" name="rosrun_param" output="screen">
+        <param name="username" type="string" value="$(arg UN)"/>
+    </node>
+</launch>
