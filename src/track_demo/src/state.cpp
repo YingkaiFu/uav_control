@@ -4,6 +4,12 @@
 #include <geometry_msgs/PoseStamped.h>
 #include <tf/tf.h>
 #include <tf/transform_datatypes.h>
+#include <iostream>
+using namespace std;
+
+
+#define GREEN "\033[0;1;32m"
+#define TAIL "\033[0m"
 
 geometry_msgs::TwistStamped uav_velocity;
 geometry_msgs::PoseStamped uav_pose;
@@ -41,18 +47,10 @@ int main(int argc, char* argv[])
     ros::Rate rate(1);
     while (ros::ok())
     {
-        ROS_INFO("----------------------------------------");
-        ROS_INFO("uav_vx:%.2f uav_vy:%.2f uav_vz:%.2f uav_az:%.2f ",
-            uav_velocity.twist.linear.x,
-            uav_velocity.twist.linear.y,
-            uav_velocity.twist.linear.z,
-            uav_velocity.twist.angular.z);
-        ROS_INFO("uav_px:%.2f uav_py:%.2f uav_pz:%.2f",
-            uav_pose.pose.position.x,
-            uav_pose.pose.position.y,
-            uav_pose.pose.position.z);
-        ROS_INFO("uav_roll:%.2f uav_pitch:%.2f uav_yaw:%.2f",
-            roll, pitch, yaw);
+    cout << GREEN << ">>>>>>>>>>>>>>>>>>>>  UAV State  <<<<<<<<<<<<<<<<<<<<" << TAIL << endl;
+    cout << GREEN << "UAV_pos [X Y Z] : " << uav_pose.pose.position.x << " [ m ] " << uav_pose.pose.position.y << " [ m ] " << uav_pose.pose.position.z << " [ m ] " << TAIL << endl;
+    cout << GREEN << "UAV_vel [X Y Z] : " << uav_velocity.twist.linear.x << " [m/s] " << uav_velocity.twist.linear.y << " [m/s] " << uav_velocity.twist.linear.z << " [m/s] " << TAIL << endl;
+    cout << GREEN << "UAV_att [R P Y] : " << roll << " [deg] " << pitch << " [deg] " << yaw << " [deg] " << TAIL << endl;
         ros::spinOnce();
         rate.sleep();
     }
