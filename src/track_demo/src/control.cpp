@@ -16,7 +16,7 @@
 // 一些全局变量
 
 // 悬空高度（追踪小车的高度）
-const double h = 1.5;
+const double h = 1.0;
 // 调整高度的速度（上升或下降）
 const double hv = 0.1;
 
