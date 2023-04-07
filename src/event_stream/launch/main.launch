@@ -1,0 +1,10 @@
+<launch>
+  <node pkg="event_stream" type="evk_stream" name="evk_stream" args="-i /home/yingkai/uav_control/out_2023-02-27_16-33-10.raw" output="screen">
+    <param name="camera_name" value="camera" />
+    <!-- <param name="event_data" value="/prophesee/event_data" /> -->
+
+    <!-- <param name="show_cd" value="true" /> -->
+    <!-- Time interval to display events up to the current time, in us -->
+    <!-- <param name="display_accumulation_time" value="500" /> -->
+  </node>
+</launch>

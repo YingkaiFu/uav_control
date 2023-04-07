@@ -73,7 +73,8 @@
         "bit": "cpp"
     },
     "python.analysis.extraPaths": [
-        "/opt/ros/noetic/lib/python3/dist-packages"
+        "/opt/ros/noetic/lib/python3/dist-packages",
+        "./src/track_demo/src/pylibs"
     ],
     "C_Cpp.errorSquiggles": "disabled",
     "cmake.configureOnOpen": true

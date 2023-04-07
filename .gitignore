@@ -2,3 +2,9 @@
 /.catkin_workspace
 /build
 /devel
+
+*.pyc
+*.raw
+*.pkl
+
+!/devel/include/prometheus_msgs/
