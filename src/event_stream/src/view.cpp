@@ -35,7 +35,7 @@ View::View(Metavision::Camera &camera, Viewer::EventBuffer &event_buffer, const 
         const std::string topic_event_frame  = "/prophesee/" + camera_name + "/event_frame";
 
         image_transport::ImageTransport it(nh_);
-        image_pub = nh_.advertise<event_stream::SerializeImage>(topic_event_data, 1);
+        image_pub = nh_.advertise<rospy_tutorials::Floats>(topic_event_data, 1);
         show_pub = it.advertise(topic_event_frame,1);
     }
 
@@ -103,8 +103,8 @@ int View::update() {
 
         int h = frame_data.size().height, w = frame_data.size().width, c = frame_data.channels();
         // ROS_INFO(std::string(c));
-        msg.channel = c, msg.height = h, msg.width = w;
-        msg.serialize_image = std::vector<int8_t>(frame_data.reshape(1, h * w * c));
+        // msg.channel = c, msg.height = h, msg.width = w;
+        msg.data = std::vector<float>(frame_data.reshape(1, h * w * c));
         image_pub.publish(msg);
         show_pub.publish(show_msg);
         cv::resizeWindow(window_name_, window_size_.width, window_size_.height);
@@ -152,8 +152,8 @@ int View::update() {
     cv::imshow(window_name_, frame_show);
     show_msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", frame_show).toImageMsg();
     int h = frame_data.size().height, w = frame_data.size().width, c = frame_data.channels();
-    msg.channel = c, msg.height = h, msg.width = w;
-    msg.serialize_image = std::vector<int8_t>(frame_data.reshape(1, h * w * c));
+    // msg.channel = c, msg.height = h, msg.width = w;
+    msg.data = std::vector<float>(frame_data.reshape(1, h * w * c));
     image_pub.publish(msg);
     show_pub.publish(show_msg);
     return key_pressed;

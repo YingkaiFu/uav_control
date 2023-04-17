@@ -18,6 +18,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   sensor_msgs
+  message_generation
   std_msgs
   tf
 )
@@ -95,13 +96,19 @@ find_package(catkin REQUIRED COMPONENTS
 ##     find_package(catkin REQUIRED COMPONENTS ...)
 ##   * uncomment the "generate_dynamic_reconfigure_options" section below
 ##     and list every .cfg file to be processed
-
+add_message_files(
+  FILES
+  Track_Info.msg
+)
 ## Generate dynamic reconfigure parameters in the 'cfg' folder
 # generate_dynamic_reconfigure_options(
 #   cfg/DynReconf1.cfg
 #   cfg/DynReconf2.cfg
 # )
-
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
 ###################################
 ## catkin specific configuration ##
 ###################################
@@ -155,7 +162,7 @@ target_link_libraries(KeyboardEvent
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(hw src/hw.cpp)
-add_executable(control src/control.cpp)
+add_executable(control_sim src/control_sim.cpp)
 add_executable(move_control src/move_control.cpp)
 
 add_executable(move_control_con src/move_control_con.cpp)
@@ -174,7 +181,7 @@ add_dependencies(move_control_con ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_E
 target_link_libraries(hw
   ${catkin_LIBRARIES}
 )
-target_link_libraries(control
+target_link_libraries(control_sim
   ${catkin_LIBRARIES}
 )
 target_link_libraries(move_control
@@ -338,6 +345,11 @@ target_link_libraries(move_slow
   ${catkin_LIBRARIES}
 )
 
+add_executable(auto_track src/auto_track.cpp)
+add_dependencies(auto_track ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} track_demo_generate_messages_cpp)
+target_link_libraries(auto_track
+  ${catkin_LIBRARIES}
+)
 # add_executable(px4_velocity_control_node src/px4_velocity_control_node.cpp)
 # add_dependencies(px4_velocity_control_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 # target_link_libraries(px4_velocity_control_node

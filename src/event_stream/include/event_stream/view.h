@@ -24,8 +24,7 @@
 #include <ros/ros.h>
 #include <sensor_msgs/image_encodings.h>
 #include <image_transport/image_transport.h>
-#include "event_stream/SerializeImage.h"
-
+#include <rospy_tutorials/Floats.h>
 #include "viewer.h"
 #include "params.h"
 
@@ -87,7 +86,7 @@ private:
     image_transport::Publisher show_pub;
     cv::Mat frame_data;
     cv::Mat frame_show;
-    event_stream::SerializeImage msg;
+    rospy_tutorials::Floats msg;
     ros::Publisher image_pub;
     ros::NodeHandle nh_;
 

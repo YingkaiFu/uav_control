@@ -22,7 +22,7 @@
 #include <metavision/sdk/driver/camera.h>
 #include <metavision/sdk/core/utils/colors.h>
 #include "ros/ros.h"
-
+#include "rospy_tutorials/Floats.h"
 template<typename T>
 T clip(const T &val, const T &minVal, const T &maxVal) {
     return std::min(std::max(val, minVal), maxVal);

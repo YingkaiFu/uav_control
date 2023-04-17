@@ -20,7 +20,7 @@ test:
       task_model:
         name: "SiamTrack"
         SiamTrack:
-           pretrain_model_path: "src/track_demo/models/final_model.pkl"
+           pretrain_model_path: "/home/yingkai/uav_control/src/track_demo/models/final_model.pkl"
           # pretrain_model_path: "/data/snapshots/nips_ab_backbone_vgg/epoch-19.pkl"
           # pretrain_model_path: "/home/fyk/ijcai2022/siam_fc_transformer3/snap/epoch-19.pkl"
     pipeline:
